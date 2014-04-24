@@ -1,0 +1,3 @@
+[submodule "source/seeds"]
+	path = source/seeds
+	url = git://github.com/cardforest/seeds.git
