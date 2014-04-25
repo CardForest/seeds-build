@@ -1,5 +1,3 @@
-
-
 _ = require('highland')
 path = require('path')
 File = require('vinyl')
