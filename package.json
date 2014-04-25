@@ -1,0 +1,29 @@
+{
+  "name": "cardforest-seeds-website",
+  "version": "0.0.0",
+  "description": "The source for the cardforest-seeds website",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/CardForest/seeds-website.git"
+  },
+  "author": "Amit Portnoy <amit.portnoy@gmail.com> (https://github.com/amitport)",
+  "license": "CC 4.0 and LGPL 3.0",
+  "bugs": {
+    "url": "https://github.com/CardForest/seeds-website/issues"
+  },
+  "homepage": "https://github.com/CardForest/seeds-website",
+  "devDependencies": {
+    "coffee-script": "^1.7.1",
+    "gulp": "^3.6.2",
+    "gulp-load-plugins": "^0.5.0",
+    "gulp-marked": "^0.2.0",
+    "highland": "^1.22.0",
+    "vinyl": "^0.2.3",
+    "lodash.template": "^2.4.1",
+    "highlight.js": "^8.0.0",
+    "vinyl-map": "^1.0.1"
+  }
+}
