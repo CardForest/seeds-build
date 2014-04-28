@@ -17,6 +17,7 @@ combineHtmlPartials = (streams...) ->
 	.pipe $.groupAggregate
 		group: (file) -> path.basename(path.dirname(file.path))
 		aggregate: (group, files) ->
+			spec = require "../source/seeds/decks/#{group}/spec.coffee"
 			partials = {}
 			for file in files
 				partials[path.basename(file.path)] = String(file.contents)
@@ -25,10 +26,11 @@ combineHtmlPartials = (streams...) ->
 				contents: new Buffer(processTemplate(template,
 					readme: partials['README.md']
 					spec:  partials['spec.coffee']
-					cardIds: ['a','s']
+					cardIds: (card.$id for key, card of spec.Card)
 				))
 			}
 
 module.exports = ->
 	combineHtmlPartials(md2HtmlPartial(), coffee2HtmlPartial())
+	.pipe($.header('\ufeff')) # adding BOM (instead of <meta charset= ...)
 	.pipe(gulp.dest('build/dev'))

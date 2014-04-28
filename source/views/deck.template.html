@@ -1,64 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    
-    <title>CardForest - seeds</title>
-    
-    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+	<head>
+		<meta charset="UTF-8">
+		
+		<title>CardForest - seeds</title>
+		
+		<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
 
-    <script src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
-    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
-    <script>$(function(){$('a').each(function(){
-    		$(this).popover({container: 'body', html: true, title: 'Ace of Clubs', trigger: 'hover',
-     content: 
-     '<div style="min-width:200px; min-height:121px"><img src="../sets/standard/designs/french/'+$(this).data('id')+'.png" width=100 style="float: left;margin-right: 14px; border:1px solid black"></img><dl style="margin-bottom: 0;"><dt>Rank</dt><dd>Ace</dd><dt style="margin-top: 9px;">Suit</dt><dd>Clubs</dd><dt style="margin-top: 9px;">Color</dt><dd>black</dd></dl></div>',
-      placement: 'top'});
-    });})</script>
-  </head>
+		<script src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
+		<script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+		<script>$(function(){$('a').each(function(){
+				$(this).popover({container: 'body', html: true, title: 'Ace of Clubs', trigger: 'hover',
+		 content: 
+		 '<div style="min-width:200px; min-height:121px"><img src="seeds/decks/standard/images/card-'+$(this).data('id')+'.png" width=100 style="float: left;margin-right: 14px; border:1px solid black"></img><dl style="margin-bottom: 0;"><dt>Rank</dt><dd>Ace</dd><dt style="margin-top: 9px;">Suit</dt><dd>Clubs</dd><dt style="margin-top: 9px;">Color</dt><dd>black</dd></dl></div>',
+			placement: 'top'});
+		});})</script>
+	</head>
+	<body class="container">
+	<br>
+	<br>
 
+	<div class="well"><%= readme %></div>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
 
-  <body class="container">
-  
-  <div class="well"><%= readme %></div>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
+	<div class="panel panel-default">
+		<div  class="panel-heading"><h4>The Cards</h4></div>
 
-    <div class="panel panel-default">
-    <!-- div  class="panel-heading"><h4>The Cards</h4>
+		<div class="panel-body">
+			<% cardIds.forEach(function (id){ %>
+			<a href="#" class="thumbnail" data-id="<%- id %>">
+					<img width="50" src="seeds/decks/standard/images/card-<%- id %>.png" alt='<%- id %>' title="<%- id %>"></img>
+			</a>
+			<% }) %>
+		</div>
+						
+	</div>
 
-<form  class="form-inline pull-right" style="position: relative; top: -36px">
-<div class="form-group">
-    <label  for="design">Design: </label>
-        <select id='design' class="form-control">
-          <option>French (Default)</option>
-          <option>other</option>
-          <option>other2</option>
-        </select>
-        </div>
-</form>
-
-    </div -->
-  <div class="panel-body">
-
-    <% cardIds.forEach(function (id){ %>
-        <a href="#" class="thumbnail" data-id="<%- id %>">
-            <img src="../sets/standard/designs/french/<%- id %>.png" alt='<%- id %>' title="<%- id %>"></img>
-        </a>
-  	<% }) %>
-
-   </div>
-          
-    </div>
-
-  <%= spec %>
-  </body>
+	<div class="panel panel-default">
+		<div class="panel-body">
+		<%= spec %>
+		</div>
+	</div>
+	</body>
 </html>
