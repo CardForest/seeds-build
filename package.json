@@ -20,10 +20,9 @@
     "gulp": "^3.6.2",
     "gulp-load-plugins": "^0.5.0",
     "gulp-marked": "^0.2.0",
+    "gulp-wrap-docco": "0.0.2",
+    "gulp-group-aggregate": "0.0.3",
     "highland": "^1.22.0",
-    "vinyl": "^0.2.3",
-    "lodash.template": "^2.4.1",
-    "highlight.js": "^8.0.0",
-    "vinyl-map": "^1.0.1"
+    "lodash.template": "^2.4.1"
   }
 }
