@@ -1,36 +1,37 @@
-_ = require('highland')
-processTemplate = require('lodash.template')
 fs = require('fs')
-path = require('path')
+compileTemplate = require('lodash.template')
+DECKS_FOLDER = "source/seeds/decks"
 
-md2HtmlPartial = ->
-	gulp.src 'source/seeds/decks/*/README.md'
-	.pipe($.marked())
+deckPages = {}
+deckPages.mdPathPattern = "#{DECKS_FOLDER}/*/README.md"
+deckPages.coffeePathPattern = "#{DECKS_FOLDER}/*/spec.coffee"
+deckPages.templatePath = "source/views/deck.template.html"
 
-coffee2HtmlPartial = ->
-	gulp.src 'source/seeds/decks/*/spec.coffee'
-	.pipe($.wrapDocco())
+deckPages.md2Html = ->
+		gulp.src deckPages.mdPathPattern
+		.pipe($.marked())
+		.pipe($.rename(extname: '.html'))
+		.pipe(gulp.dest(".tmp"))
 
-combineHtmlPartials = (streams...) ->
-	template = fs.readFileSync 'source/views/deck.template.html'
-	_(streams.map((s) -> _(s))).merge()
-	.pipe $.groupAggregate
-		group: (file) -> path.basename(path.dirname(file.path))
-		aggregate: (group, files) ->
-			spec = require "../source/seeds/decks/#{group}/spec.coffee"
-			partials = {}
-			for file in files
-				partials[path.basename(file.path)] = String(file.contents)
-			return {
-				path: group + '.html'
-				contents: new Buffer(processTemplate(template,
-					readme: partials['README.md']
-					spec:  partials['spec.coffee']
-					cardIds: (card.$id for key, card of spec.Card)
-				))
-			}
+deckPages.coffee2Html = ->
+		gulp.src deckPages.coffeePathPattern
+		.pipe($.wrapDocco())
+		.pipe($.rename(extname: '.html'))
+		.pipe(gulp.dest(".tmp"))
 
-module.exports = ->
-	combineHtmlPartials(md2HtmlPartial(), coffee2HtmlPartial())
-	.pipe($.header('\ufeff')) # adding BOM (instead of <meta charset= ...)
-	.pipe(gulp.dest('build/dev'))
+deckPages.folder2Html = ->
+		templateFn = compileTemplate(fs.readFileSync(deckPages.templatePath, encoding: 'UTF-8'))
+
+		# for each folder in sets (assumes there are only folders in sets)
+		for folder in fs.readdirSync DECKS_FOLDER
+			readmeHtml = fs.readFileSync ".tmp/#{folder}/README.html", encoding: 'UTF-8'
+			specHtml = fs.readFileSync ".tmp/#{folder}/spec.html", encoding: 'UTF-8'
+			spec = require "../#{DECKS_FOLDER}/#{folder}/spec.coffee"
+
+			deckHtml = templateFn
+				readme: readmeHtml
+				spec:  specHtml
+				cardIds: (card.$id for key, card of spec.Card)
+			fs.writeFileSync "build/dev/#{folder}.html", '\ufeff' + deckHtml, encoding: 'UTF-8'
+
+module.exports = deckPages
