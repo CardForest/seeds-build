@@ -1,7 +1,7 @@
-CardForest-Seeds - website
+CardForest-Seeds - build setup
 ==========================
 
-The source for the [CardForest-Seeds](https://github.com/CardForest/seeds) website.
+This code builds the [seeds website](http://seeds.cardforest.com/) from its [sources](https://github.com/CardForest/seeds).
 
 Getting Started
 ---------------
