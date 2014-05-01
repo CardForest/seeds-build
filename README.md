@@ -13,14 +13,14 @@ Clone the seeds-website repository using [git](http://git-scm.com/). Make sure y
 1. Install [git](http://git-scm.com/) (if you haven't already)
 2. Clone the repository:
 
-```shell
+```sh
 git clone --recursive git://github.com/CardForest/seeds-website.git
 cd seeds-website
 ```
 
 **Note:** If already cloned the repository without the ```--recursive``` flag then you can still download the submodule by running the following command from the project folder:
 
-```shell
+```sh
 git submodule update --init --recursive
 ```
 
@@ -42,7 +42,5 @@ Execute ```gulp live``` to start the local server on ```http://localhost:9000```
 
 ### Contributing
 
-After testing that everything is OK locally you can contribute you changes. If it's just a small change in a single file than you can edit the file using github GUI. If it's a bigger change you should [fork](https://help.github.com/articles/fork-a-repo) this repository, make the changes on your repository and send a [pull request](https://help.github.com/articles/using-pull-requests). 
-> (...and if all that fails you can just ask for help or send the files by e-mail)
-
-
+You can contribute you changes after testing that everything is _OK_ locally. If it's just a small change in a single file then you can edit the file using github GUI. If it's a big change then you should [fork](https://help.github.com/articles/fork-a-repo) this repository, modify your copy of the repository and send a [pull request](https://help.github.com/articles/using-pull-requests). 
+(...and if that fails, you can just ask for help or send the files by e-mail)
