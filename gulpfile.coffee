@@ -59,4 +59,7 @@ gulp.task 'live', ['folder2Html', 'assets'], ->
 	gulp.watch deckPages.templatePath, (file) ->
 		deckPages.folder2Html()
 		reloadServer.changed(file.path)
+	gulp.watch 'source/styles/**/*.css', (file) ->
+		gulp.start 'styles', ->
+			reloadServer.changed(file.path)
 
