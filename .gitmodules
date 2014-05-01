@@ -1,3 +1,7 @@
 [submodule "source/seeds"]
 	path = source/seeds
 	url = git://github.com/cardforest/seeds.git
+[submodule "build/prod"]
+	path = build/prod
+	url = https://github.com/CardForest/seeds.git
+	branch = gh-pages

@@ -33,6 +33,6 @@ deckPages.folder2Html = ->
 				spec:       specHtml
 				cardIds:    (card.$id for key, card of spec.Card)
 				deckFolder: folder
-			fs.writeFileSync "build/dev/#{folder}.html", '\ufeff' + deckHtml, encoding: 'UTF-8'
+			fs.writeFileSync "build/#{target}/#{folder}.html", '\ufeff' + deckHtml, encoding: 'UTF-8'
 
 module.exports = deckPages
