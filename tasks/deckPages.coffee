@@ -27,11 +27,12 @@ deckPages.folder2Html = ->
 			readmeHtml = fs.readFileSync ".tmp/#{folder}/README.html", encoding: 'UTF-8'
 			specHtml = fs.readFileSync ".tmp/#{folder}/spec.html", encoding: 'UTF-8'
 			spec = require "../#{DECKS_FOLDER}/#{folder}/spec.coffee"
-
 			deckHtml = templateFn
-				readme: readmeHtml
-				spec:  specHtml
-				cardIds: (card.$id for key, card of spec.Card)
+				title:      folder.toUpperCase()
+				readme:     readmeHtml
+				spec:       specHtml
+				cardIds:    (card.$id for key, card of spec.Card)
+				deckFolder: folder
 			fs.writeFileSync "build/dev/#{folder}.html", '\ufeff' + deckHtml, encoding: 'UTF-8'
 
 module.exports = deckPages

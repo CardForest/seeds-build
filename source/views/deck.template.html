@@ -4,47 +4,53 @@
 		<meta charset="UTF-8">
 
 		<title>CardForest - seeds</title>
-		
-		<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
 
+		<link rel="stylesheet" href="/styles/normalize.css">		
+		<link rel="stylesheet" href="/styles/docco.css">
+		<!-- link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+		<style>
+			a.thumbnail {
+				width: 60px;
+				display: inline-block;
+				white-space: nowrap;
+			}
+		<style>
+		.page pre {
+			background: url('/images/gray.png') #fff;
+  			background-size: 322px;
+  		}
+  		</style>
 		<script src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
 		<script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 		<script>$(function(){$('a').each(function(){
 				$(this).popover({container: 'body', html: true, title: 'Ace of Clubs', trigger: 'hover',
 		 content: 
-		 '<div style="min-width:200px; min-height:121px"><img src="seeds/decks/standard/images/card-'+$(this).data('id')+'.png" width=100 style="float: left;margin-right: 14px; border:1px solid black"></img><dl style="margin-bottom: 0;"><dt>Rank</dt><dd>Ace</dd><dt style="margin-top: 9px;">Suit</dt><dd>Clubs</dd><dt style="margin-top: 9px;">Color</dt><dd>black</dd></dl></div>',
+		 '<div style="min-width:200px; min-height:121px"><img src="seeds/decks/<%- deckFolder %>/images/card-'+$(this).data('id')+'.png" width=100 style="float: left;margin-right: 14px; border:1px solid black"></img><dl style="margin-bottom: 0;"><dt>Rank</dt><dd>Ace</dd><dt style="margin-top: 9px;">Suit</dt><dd>Clubs</dd><dt style="margin-top: 9px;">Color</dt><dd>black</dd></dl></div>',
 			placement: 'top'});
 		});})</script>
+		</style> -->
 	</head>
-	<body class="container">
-	<br>
-	<br>
+	<body>
+		<div class="container">
+			<div class='page' style="box-shadow: 0 0 10px rgba(0,0,0,0.1);">
+				<div class="header">
+					<h1>C<span style="font-size:80%">ard</span>F<span style="font-size:80%">orest seeds</span> <br><br>The <%= title %> deck</h1>
+				</div>
+				<%= readme %>
 
-	<div class="well"><%= readme %></div>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
+				<h2>The Cards</h2>
+				<div>
+				<% cardIds.forEach(function (id){ %>
+					<img style="border:1px solid rgb(183, 183, 183);" width="50" src="seeds/decks/<%- deckFolder %>/images/card-<%- id %>.png" alt='<%- id %>' title="<%- id %>"></img>
+				<% }) %>
+				</div>
 
-	<div class="panel panel-default">
-		<div  class="panel-heading"><h4>The Cards</h4></div>
-
-		<div class="panel-body">
-			<% cardIds.forEach(function (id){ %>
-			<a href="#" class="thumbnail" data-id="<%- id %>">
-					<img width="50" src="seeds/decks/standard/images/card-<%- id %>.png" alt='<%- id %>' title="<%- id %>"></img>
-			</a>
-			<% }) %>
+				<h2>Formal Specification</h2>
+				<%= spec %>
+				<div class="fleur">h</div>
+				<br><hr>
+				<div style="margin-top:21.5px;text-align:center">Some rights reserved - read the <a href="//github.com/CardForest/seeds#license--">license</a></div>
+			</div>
 		</div>
-						
-	</div>
-
-	<div class="panel panel-default">
-		<div class="panel-body">
-		<%= spec %>
-		</div>
-	</div>
 	</body>
 </html>
